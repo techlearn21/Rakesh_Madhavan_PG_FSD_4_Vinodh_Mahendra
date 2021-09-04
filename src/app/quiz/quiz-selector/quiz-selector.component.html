@@ -1,0 +1,32 @@
+
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="text-center">
+      <h3 class="font-weight-light">Select a quiz</h3>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="card text center">
+      <select class="selectpicker" data-style="btn-primary" [(ngModel)]="selectedQuizId" (change)="getQuiz(selectedQuizId)" id="quiz" name="quiz" required>
+        <option value="-1" disabled selected>Select</option>
+        <option *ngFor="let tempQuiz of allQuiz" value="{{tempQuiz.quizId}}">{{tempQuiz.quizName}}</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="col">
+    <div class="text-center">
+      <h3 class="font-weight-light">{{getQuiz(selectedQuizId)?.quizName}}</h3>
+    </div>
+    <p>{{getQuiz(selectedQuizId)?.quizDescription}}</p>
+    <br>
+    <div class="text-center">
+      <a class="btn btn-primary" (click)="setStartQuiz()" [hidden]="!(selectedQuizId > -1)">Start Quiz!</a>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,35 @@
+
+<app-quiz-selector
+  (quizFromSelector)="receiveSelectedQuiz($event)"
+  (startFromSelector)="receiveStart($event)"
+></app-quiz-selector>
+
+<br>
+
+<!-- *ngIf="!quizOver" -->
+<div class="container" >
+  <app-question
+    [quizFromParent]="currentQuiz"
+    [questionIndex]="currentIndex"
+    (answers)="receiveAnswers($event)"
+    (totalQuestions)="getTotalQuestions($event)"
+    (isAnswered)="setIsAnswered($event)"
+  > </app-question>
+
+  <br>
+
+  <div class="text-center">
+    <button class="btn btn-outline-primary" (click)="goPrevious()" [hidden]="!startQuiz || quizOver">Previous</button>
+    &nbsp;
+    <button class="btn btn-outline-secondary" (click)="goNext()" [hidden]="!startQuiz || quizOver" [disabled]="!isAnswered">Next</button>
+  </div>
+
+  <div class="container" *ngIf="quizOver">
+    <div class="text-center">
+      <h4>{{currentQuiz.quizName}} is now complete</h4>
+      Your score is {{score}}/{{totalQuestions}}
+    </div>
+    <br>
+  </div>
+
+</div>

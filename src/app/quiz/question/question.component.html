@@ -1,0 +1,29 @@
+
+<hr>
+
+<div class="container" *ngIf=showQuestion()>
+  <div class="container">
+
+    <div class="card">
+      <div class="card-header"><h2>{{ currentQuestionId }} - {{ currentQuestion }}</h2></div>
+      <div class="card-body">
+        <p *ngFor="let option of currentOptions">
+          <input
+            (click)="setAnswer(option)"
+            type="radio"
+            value={{option}}
+            name="answer"> {{option}}
+        </p>
+      </div>
+      <div class="card-footer">Answer the above question to proceed to the next question</div>
+
+    </div>
+
+    <br>
+
+
+  </div>
+
+
+
+</div>
